@@ -5,12 +5,12 @@ struct DetailView: View {
         VStack {
             // Contenu principal dans un ScrollView
             ScrollView {
-                VStack(spacing: 15) { // Espacement réduit de manière modérée
+                VStack(spacing: 15) {
                     // Image et titre
                     Image(systemName: "wineglass")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 100, height: 100) // Taille légèrement réduite
+                        .frame(width: 100, height: 100)
                         .foregroundColor(.white)
                         .background(Circle().fill(Color.brown).frame(width: 120, height: 120))
                     
@@ -29,28 +29,28 @@ struct DetailView: View {
                             Image("image\(index)") // Remplacez par vos images dans les Assets
                                 .resizable()
                                 .scaledToFill()
-                                .frame(height: 200) // Hauteur ajustée modérément
+                                .frame(height: 200)
                                 .clipped()
                                 .cornerRadius(10)
-                                .padding(.horizontal, 10) // Espacement horizontal
+                                .padding(.horizontal, 10)
                         }
                     }
                     .frame(height: 200) // Hauteur modérée du carrousel
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic)) // Style carrousel avec indicateurs
-                    .padding(.vertical, 15) // Espacement vertical ajusté
+                    .padding(.vertical, 15)
                     
                     // Ligne avec deux boutons côte à côte
-                    HStack(spacing: 20) { // Espacement légèrement augmenté entre les boutons
+                    HStack(spacing: 20) {
                         // Bouton Appeler
                         Button(action: {
                             print("Appeler")
                         }) {
-                            VStack(spacing: 10) { // Espace vertical ajusté
+                            VStack(spacing: 10) {
                                 Image(systemName: "phone.fill")
-                                    .font(.system(size: 30)) // Taille d'icône légèrement réduite
+                                    .font(.system(size: 30))
                                     .foregroundColor(.gray)
                                 Text("Appeler")
-                                    .font(.headline) // Taille du texte ajustée
+                                    .font(.headline)
                                     .foregroundColor(.white)
                             }
                             .frame(maxWidth: .infinity, minHeight: 90)
@@ -63,12 +63,12 @@ struct DetailView: View {
                         Button(action: {
                             print("Voir le site web")
                         }) {
-                            VStack(spacing: 10) { // Espace vertical ajusté
+                            VStack(spacing: 10) {
                                 Image(systemName: "globe")
-                                    .font(.system(size: 30)) // Taille d'icône légèrement réduite
+                                    .font(.system(size: 30))
                                     .foregroundColor(.gray)
                                 Text("Voir le site web")
-                                    .font(.headline) // Taille du texte ajustée
+                                    .font(.headline)
                                     .foregroundColor(.white)
                             }
                             .frame(maxWidth: .infinity, minHeight: 90)
@@ -82,12 +82,12 @@ struct DetailView: View {
                     Button(action: {
                         print("Laisser un commentaire")
                     }) {
-                        VStack(spacing: 10) { // Espace vertical ajusté
+                        VStack(spacing: 10) {
                             Image(systemName: "message.fill")
-                                .font(.system(size: 30)) // Taille d'icône ajustée
+                                .font(.system(size: 30))
                                 .foregroundColor(.gray)
                             Text("Laisser un commentaire")
-                                .font(.headline) // Taille du texte ajustée
+                                .font(.headline)
                                 .foregroundColor(.white)
                         }
                         .padding()
@@ -106,7 +106,7 @@ struct DetailView: View {
                 }) {
                     VStack {
                         Image(systemName: "house.fill")
-                            .font(.title2) // Taille de l'icône ajustée
+                            .font(.title2)
                             .foregroundColor(.white)
                         Text("Accueil")
                             .font(.footnote)
@@ -121,7 +121,7 @@ struct DetailView: View {
                 }) {
                     VStack {
                         Image(systemName: "list.bullet")
-                            .font(.title2) // Taille de l'icône ajustée
+                            .font(.title2)
                             .foregroundColor(.white)
                         Text("Liste")
                             .font(.footnote)
@@ -131,9 +131,9 @@ struct DetailView: View {
                 }
                 .frame(maxWidth: .infinity)
             }
-            .background(Color.gray.opacity(0.2)) // Couleur de la barre
+            .background(Color.gray.opacity(0.2))
         }
-        .background(Color.black.edgesIgnoringSafeArea(.all)) // Fond noir
+        .background(Color.black.edgesIgnoringSafeArea(.all))
     }
 }
 
