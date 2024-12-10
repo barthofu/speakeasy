@@ -1,13 +1,23 @@
 import SwiftUI
 import MapKit
+import iPhoneNumberField
+
+let COMMENT_PLACEHOLDER = "Commentaire"
 
 struct AddLocationView: View {
+    
     @State private var locationService = LocationService(completer: .init())
     @State private var searchQuery = ""
-    @State public var searchResults: [MKLocalSearchCompletion] = []
-    @State private var selectedAddress: MKLocalSearchCompletion?
+    @State private var selectedResult: SearchResult?
+    @State private var isShowingResults = false
     @State private var name = ""
+    @State private var address = ""
     @State private var closingTime = ""
+    @State private var phoneNumber = ""
+    @State private var minPrice: Double? = nil
+    @State private var maxPrice: Double? = nil
+    @State private var type = LocationType.bar.rawValue
+    @State private var comment = COMMENT_PLACEHOLDER
     @State private var imageUrl = ""
     
     @State private var fetchedImageUrls: [String] = []
@@ -17,63 +27,82 @@ struct AddLocationView: View {
     var body: some View {
         NavigationView {
             Form {
+                TextField("Rechercher une addresse ou un lieu", text: $searchQuery, onEditingChanged: { isEditing in
+                    // Affiche la liste si l'utilisateur édite le champ de recherche
+                    isShowingResults = isEditing && !searchQuery.isEmpty
+                })
+                    .autocorrectionDisabled()
+                    .onChange(of: searchQuery) {
+                        locationService.update(queryFragment: searchQuery)
+                        isShowingResults = !searchQuery.isEmpty
+                    }
+                
                 Section(header: Text("Informations de l'établissement")) {
-                    TextField("Rechercher une addresse ou un lieu", text: $searchQuery)
-                        .autocorrectionDisabled()
                     
-                    List {
-                        ForEach(locationService.completions) { completion in
-                            Button(action: { }) {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(completion.title)
-                                        .font(.headline)
-                                        .fontDesign(.rounded)
-                                    Text(completion.subTitle)
-                                }
+                    if isShowingResults {
+                        List {
+                            ForEach(locationService.results) { result in
+                                Button(action: {
+                                    selectedResult = result
+                                    name = result.name
+                                    address = result.address
+                                    phoneNumber = result.phoneNumber ?? ""
+                                    isShowingResults = false
+                                 }) {
+                                     VStack(alignment: .leading, spacing: 4) {
+                                         Text(result.name)
+                                             .font(.headline)
+                                             .fontDesign(.rounded)
+                                         Text(result.address)
+                                     }
+                                 }
+                                 .listRowBackground(Color.clear)
                             }
-                            // 3
-                            .listRowBackground(Color.clear)
                         }
                     }
+                    
+                    TextField("Nom", text: $name)
+                    
+                    TextField("Addresse", text: $address)
                     
                     TextField("Heure de fermeture", text: $closingTime)
-                        .keyboardType(.numberPad)
+                                        
+                    iPhoneNumberField("Téléphone", text: $phoneNumber)
+                        .flagHidden(false)
+                        .flagSelectable(true)
+                        .prefixHidden(false)
                     
-                    TextField("URL des images", text: $imageUrl)
-                        .keyboardType(.URL)
-                    
-                    if let selectedAddress = selectedAddress {
-                        VStack(alignment: .leading) {
-                            Text("Adresse sélectionnée :")
-                            Text(selectedAddress.title)
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                            Text(selectedAddress.subtitle)
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
+                    Picker("Type", selection: $type) {
+                        ForEach(LocationType.allCases) { locationType in
+                            Text(locationType.displayName).tag(locationType)
                         }
-                        .padding(.top, 10)
+                    }
+                    .pickerStyle(.menu)
+                    
+                    HStack {
+                        TextField("Prix bas", value: $minPrice, format: .number)
+                            .keyboardType(.decimalPad)
+                        TextField("Prix haut", value: $maxPrice, format: .number)
+                            .keyboardType(.decimalPad)
                     }
                     
-                    if !searchResults.isEmpty {
-                        Section(header: Text("Suggestions d'adresses")) {
-                            List(searchResults, id: \.self) { result in
-                                Button(action: {
-                                    selectedAddress = result
-                                    searchQuery = result.title
-                                }) {
-                                    Text(result.title)
-                                        .foregroundColor(.blue)
-                                }
+                    TextEditor(text: $comment)
+                        .foregroundColor(self.comment == COMMENT_PLACEHOLDER ? .gray : .primary)
+                        .onTapGesture {
+                            if self.comment == COMMENT_PLACEHOLDER {
+                                self.comment = ""
                             }
                         }
-                    }
-                    
-                    Button("Ajouter l'établissement") {
-                        saveEstablishment()
-                    }
-                    .disabled(name.isEmpty || closingTime.isEmpty || searchQuery.isEmpty)
                 }
+                
+                Button("Ajouter l'établissement") {
+                    saveLocation()
+                }
+                    .disabled(
+                        name.isEmpty
+                        || address.isEmpty
+                        || type.isEmpty
+                    )
                 
                 if !fetchedImageUrls.isEmpty {
                     Section(header: Text("Images disponibles")) {
@@ -89,10 +118,11 @@ struct AddLocationView: View {
             }
             .navigationBarTitle("Ajouter un établissement")
         }
+        .navigationViewStyle(.stack)
     }
         
-    func saveEstablishment() {
-        print("Nom: \(name), Adresse: \(selectedAddress?.title ?? "")")
+    func saveLocation() {
+        print("Nom: \(name), Adresse: \(selectedResult?.address ?? "")")
         
         fetchImageUrls()
     }

@@ -11,7 +11,7 @@
         }
       }
     },
-    "Adresse sélectionnée :" : {
+    "Addresse" : {
 
     },
     "Ajouter l'établissement" : {
@@ -103,7 +103,7 @@
         }
       }
     },
-    "Rechercher une addresse ou un lieu" : {
+    "Nom" : {
 
     },
     "See the website" : {
@@ -118,12 +118,21 @@
       }
     },
     "Suggestions d'adresses" : {
+        
+    },
+    "Prix bas" : {
 
+    },
+    "Prix haut" : {
+
+    },
+    "Rechercher une addresse ou un lieu" : {
+        
     },
     "The Glory H" : {
 
     },
-    "URL des images" : {
+    "Type" : {
 
     },
     "Voir le site web" : {

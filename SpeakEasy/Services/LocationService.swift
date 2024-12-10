@@ -7,17 +7,20 @@
 
 import MapKit
 
-struct SearchCompletions: Identifiable {
+struct SearchResult: Identifiable {
     let id = UUID()
-    let title: String
-    let subTitle: String
+    let coordinates: CLLocationCoordinate2D
+    let name: String
+    let address: String
+    let type: String?
+    let phoneNumber: String?
 }
 
 @Observable
 class LocationService: NSObject, MKLocalSearchCompleterDelegate {
     private let completer: MKLocalSearchCompleter
 
-    var completions = [SearchCompletions]()
+    var results = [SearchResult]()
 
     init(completer: MKLocalSearchCompleter) {
         self.completer = completer
@@ -31,6 +34,16 @@ class LocationService: NSObject, MKLocalSearchCompleterDelegate {
     }
 
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        completions = completer.results.map { .init(title: $0.title, subTitle: $0.subtitle) }
+        results = completer.results.compactMap { completion in // ref: https://developer.apple.com/documentation/mapkit/mklocalsearchcompletion#1657948
+            let mapItem = completion.value(forKey: "_mapItem") as? MKMapItem // ref: https://developer.apple.com/documentation/mapkit/mkmapitem#1657975
+
+            return .init(
+                coordinates: mapItem?.placemark.coordinate ?? CLLocationCoordinate2D.init(),
+                name: completion.title,
+                address: completion.subtitle,
+                type: mapItem?.pointOfInterestCategory?.rawValue.replacingOccurrences(of: "MKPOICategory", with: "").lowercased(),
+                phoneNumber: mapItem?.phoneNumber
+            )
+        }
     }
 }
