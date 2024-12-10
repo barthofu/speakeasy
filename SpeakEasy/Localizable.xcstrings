@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Adresse" : {
+    "Accueil" : {
 
     },
     "Adresse sélectionnée :" : {
@@ -11,6 +11,12 @@
 
     },
     "Ajouter un établissement" : {
+
+    },
+    "Appeler" : {
+
+    },
+    "Bar" : {
 
     },
     "Contribute" : {
@@ -30,9 +36,6 @@
         }
       }
     },
-    "Hello world" : {
-
-    },
     "Hello, Contribute!" : {
 
     },
@@ -46,6 +49,12 @@
 
     },
     "Informations de l'établissement" : {
+
+    },
+    "Laisser un commentaire" : {
+
+    },
+    "Liste" : {
 
     },
     "Map" : {
@@ -68,10 +77,19 @@
         }
       }
     },
-    "Nom de l'établissement" : {
+    "Rechercher une addresse ou un lieu" : {
+
+    },
+    "Suggestions d'adresses" : {
+
+    },
+    "The Glory H" : {
 
     },
     "URL des images" : {
+
+    },
+    "Voir le site web" : {
 
     }
   },

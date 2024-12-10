@@ -1,7 +1,7 @@
 import SwiftUI
 import MapKit
 
-struct AddEstablishmentView: View {
+struct AddLocationView: View {
     @State private var locationService = LocationService(completer: .init())
     @State private var searchQuery = ""
     @State public var searchResults: [MKLocalSearchCompletion] = []
@@ -10,7 +10,6 @@ struct AddEstablishmentView: View {
     @State private var closingTime = ""
     @State private var imageUrl = ""
     
-    // Liens d'images fictifs pour démonstration
     @State private var fetchedImageUrls: [String] = []
     
     let locationManager = CLLocationManager()
@@ -108,5 +107,5 @@ struct AddEstablishmentView: View {
 
 
 #Preview {
-    AddEstablishmentView()
+    AddLocationView()
 }
