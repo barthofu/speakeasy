@@ -18,29 +18,27 @@ struct MapView: View {
         )
     )
     
-    var listLocations: [Location]
+    var listLocations: [LocationModel]
     
     var body: some View {
         Map(position: $position) {
             ForEach(listLocations) { location in
-                if let latitude = Double(location.lat), let longitude = Double(location.long) {
-                    Annotation(location.name, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude)) {
-                        Image(systemName: location.type.icon)
-                                .foregroundStyle(.white)
-                                .padding(8)
-                                .background(Color("Primary"))
-                                .clipShape(Circle())
-                                .shadow(radius: 4)
-                            
-                            Text(location.name)
-                                .font(.caption)
-                                .foregroundColor(.black)
-                                .padding(4)
-                                .background(Color.white.opacity(0.9))
-                                .cornerRadius(8)
-                    }
-                    .annotationTitles(.hidden)
+                Annotation(location.name, coordinate: CLLocationCoordinate2D(latitude: location.coordinates.latitude, longitude: location.coordinates.longitude)) {
+                    Image(systemName: location.type.icon)
+                            .foregroundStyle(.white)
+                            .padding(8)
+                            .background(Color("Primary"))
+                            .clipShape(Circle())
+                            .shadow(radius: 4)
+                        
+                        Text(location.name)
+                            .font(.caption)
+                            .foregroundColor(.black)
+                            .padding(4)
+                            .background(Color.white.opacity(0.9))
+                            .cornerRadius(8)
                 }
+                .annotationTitles(.hidden)
             }
         }
         .mapStyle(.imagery(elevation: .realistic))
@@ -49,5 +47,5 @@ struct MapView: View {
 }
 
 #Preview {
-    MapView(listLocations: Location.getLyonLocationsWithFullData())
+    MapView(listLocations: LocationModel.getLyonLocationsWithFullData())
 }
