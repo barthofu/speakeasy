@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct ContributeView: View {
+struct ListView: View {
     var body: some View {
         Text("Hello, Contribute!")
     }
 }
 
 #Preview {
-    ContributeView()
+    ListView()
 }

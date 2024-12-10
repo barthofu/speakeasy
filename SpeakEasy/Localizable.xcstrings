@@ -1,6 +1,18 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Adresse" : {
+
+    },
+    "Adresse sélectionnée :" : {
+
+    },
+    "Ajouter l'établissement" : {
+
+    },
+    "Ajouter un établissement" : {
+
+    },
     "Contribute" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -18,6 +30,27 @@
         }
       }
     },
+    "Hello world" : {
+
+    },
+    "Hello, Contribute!" : {
+
+    },
+    "Hello, World!" : {
+
+    },
+    "Heure de fermeture" : {
+
+    },
+    "Images disponibles" : {
+
+    },
+    "Informations de l'établissement" : {
+
+    },
+    "Map" : {
+
+    },
     "Nearby" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -34,6 +67,12 @@
           }
         }
       }
+    },
+    "Nom de l'établissement" : {
+
+    },
+    "URL des images" : {
+
     }
   },
   "version" : "1.0"

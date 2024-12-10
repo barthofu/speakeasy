@@ -16,10 +16,9 @@ struct ContentView: View {
                     Label("Map", systemImage: "map.fill")
                 }
                 
-                ContributeView().tabItem {
+                ListView().tabItem {
                     Label("Contribute", systemImage: "sharedwithyou")
                 }
-                
         }
         .padding()
     }
