@@ -12,7 +12,7 @@ struct ContentView: View {
     
     var body: some View {
             TabView {
-                MapView().tabItem {
+                MapView(listLocations: Location.getLyonLocationsWithFullData()).tabItem {
                     Label("Map", systemImage: "map.fill")
                 }
                 
