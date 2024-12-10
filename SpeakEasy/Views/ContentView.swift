@@ -11,15 +11,15 @@ struct ContentView: View {
     @State var selection: Int = 0
     
     var body: some View {
-            TabView(selection: $selection) {
-                Tab("Nearby", systemImage: "map.fill", value: 0) {
-                    MapView()
+            TabView {
+                MapView().tabItem {
+                    Label("Map", systemImage: "map.fill")
                 }
-
-
-                Tab("Contribute", systemImage: "sharedwithyou", value: 1) {
-                    MapView()
+                
+                ContributeView().tabItem {
+                    Label("Contribute", systemImage: "sharedwithyou")
                 }
+                
         }
         .padding()
     }
