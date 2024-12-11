@@ -11,9 +11,10 @@ struct GlassedButton: View {
     
     var systemImageName: String
     var text: String
+    var action: () -> Void
     
     var body: some View {
-        Button(action: {}) {
+        Button(action: action) {
             VStack(spacing: 10) {
                 Image(systemName: systemImageName)
                     .font(.system(size: 30))
@@ -34,7 +35,8 @@ struct GlassedButtonPreview: PreviewProvider {
     static var previews: some View {
         GlassedButton(
             systemImageName: "phone.fill",
-            text: "Call"
+            text: "Call",
+            action: {}
         )
     }
 }

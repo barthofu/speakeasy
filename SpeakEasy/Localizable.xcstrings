@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Accueil" : {
+      "extractionState" : "stale",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
@@ -18,12 +19,6 @@
 
     },
     "Ajouter un établissement" : {
-
-    },
-    "Appeler" : {
-
-    },
-    "Bar" : {
 
     },
     "Call" : {
@@ -66,9 +61,6 @@
     "Informations de l'établissement" : {
 
     },
-    "Laisser un commentaire" : {
-
-    },
     "Leave a comment" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -79,9 +71,6 @@
           }
         }
       }
-    },
-    "Liste" : {
-
     },
     "Map" : {
 
@@ -106,6 +95,15 @@
     "Nom" : {
 
     },
+    "Prix bas" : {
+
+    },
+    "Prix haut" : {
+
+    },
+    "Rechercher une addresse ou un lieu" : {
+
+    },
     "See the website" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -117,25 +115,7 @@
         }
       }
     },
-    "Suggestions d'adresses" : {
-        
-    },
-    "Prix bas" : {
-
-    },
-    "Prix haut" : {
-
-    },
-    "Rechercher une addresse ou un lieu" : {
-        
-    },
-    "The Glory H" : {
-
-    },
     "Type" : {
-
-    },
-    "Voir le site web" : {
 
     }
   },

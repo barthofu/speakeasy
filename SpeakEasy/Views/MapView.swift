@@ -21,28 +21,37 @@ struct MapView: View {
     var listLocations: [LocationModel]
     
     var body: some View {
-        Map(position: $position) {
-            ForEach(listLocations) { location in
-                Annotation(location.name, coordinate: CLLocationCoordinate2D(latitude: location.coordinates.latitude, longitude: location.coordinates.longitude)) {
-                    Image(systemName: location.type.icon)
-                            .foregroundStyle(.white)
-                            .padding(8)
-                            .background(Color("Primary"))
-                            .clipShape(Circle())
-                            .shadow(radius: 4)
+        NavigationStack {
+            Map(position: $position) {
+                ForEach(listLocations) { location in
+                    Annotation(location.name, coordinate: CLLocationCoordinate2D(latitude: location.coordinates.latitude, longitude: location.coordinates.longitude)) {
                         
-                        Text(location.name)
-                            .font(.caption)
-                            .foregroundColor(.black)
-                            .padding(4)
-                            .background(Color.white.opacity(0.9))
-                            .cornerRadius(8)
+                        NavigationLink {
+                            DetailView(location: location)
+                        } label: {
+                            VStack {
+                                Image(systemName: location.type.icon)
+                                    .foregroundStyle(.white)
+                                    .padding(8)
+                                    .background(Color("Primary"))
+                                    .clipShape(Circle())
+                                    .shadow(radius: 4)
+                                
+                                Text(location.name)
+                                    .font(.caption)
+                                    .foregroundColor(.black)
+                                    .padding(4)
+                                    .background(Color.white.opacity(0.9))
+                                    .cornerRadius(8)
+                            }
+                        }
+                    }
+                    .annotationTitles(.hidden)
                 }
-                .annotationTitles(.hidden)
             }
+            .mapStyle(.imagery(elevation: .realistic))
+            .navigationBarHidden(true)
         }
-        .mapStyle(.imagery(elevation: .realistic))
-        .edgesIgnoringSafeArea(.all)
     }
 }
 
