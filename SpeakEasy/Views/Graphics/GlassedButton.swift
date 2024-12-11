@@ -19,7 +19,7 @@ struct GlassedButton: View {
                 Image(systemName: systemImageName)
                     .font(.system(size: 30))
                     .foregroundColor(Color("Gray").opacity(0.8))
-                Text(text)
+                Text(LocalizedStringKey(text))
                     .font(.headline)
                     .foregroundColor(Color.secondary)
             }
