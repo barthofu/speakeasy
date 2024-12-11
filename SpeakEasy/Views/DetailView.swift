@@ -67,8 +67,6 @@ struct DetailView: View {
     }
 }
 
-struct DetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailView(location: LocationModel.getLyonLocationsWithFullData()[0])
-    }
+#Preview {
+    DetailView(location: LocationModel.getLyonLocationsWithFullData()[0])
 }
