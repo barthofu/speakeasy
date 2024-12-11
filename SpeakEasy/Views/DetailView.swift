@@ -54,16 +54,14 @@ struct DetailView: View {
                     GlassedButton(
                         systemImageName: "globe",
                         text: "See the website",
-                        action: {}
+                        action: {
+                            UIApplication.shared.open(
+                                URL(string: "https://www.google.fr")!
+                            )
+                        }
                     )
                 }
-                
-                GlassedButton(
-                    systemImageName: "message.fill",
-                    text: "Leave a comment",
-                    action: {}
-                )
-                
+            
             }.padding()
         }
     }
