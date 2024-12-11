@@ -49,9 +49,6 @@
         }
       }
     },
-    "Hello, Contribute!" : {
-
-    },
     "Heure de fermeture" : {
 
     },
@@ -72,6 +69,17 @@
         }
       }
     },
+    "Locations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emplacements"
+          }
+        }
+      }
+    },
     "Map" : {
 
     },
@@ -88,6 +96,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Autour de moi"
+          }
+        }
+      }
+    },
+    "No locations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops, looks like there's no location..."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops, on dirait qu’il n’y a pas d’emplacements…"
           }
         }
       }

@@ -8,11 +8,32 @@
 import SwiftUI
 
 struct ListView: View {
+    var locations: [LocationModel] = []
+    
     var body: some View {
-        Text("Hello, Contribute!")
+        NavigationStack {
+            List {
+                ForEach(locations) { location in
+                    NavigationLink {
+                        DetailView(location: location)
+                    } label: {
+                        LocationListItem(location: location)
+                    }
+                }
+            }.overlay(Group {
+                if locations.isEmpty {
+                    Text("No locations")
+                        .font(.headline)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                }
+            })
+            .animation(.default, value: locations)
+            .navigationTitle("Locations")
+        }
     }
 }
 
 #Preview {
-    ListView()
+    ListView(locations: LocationModel.getLyonLocationsWithFullData())
 }
