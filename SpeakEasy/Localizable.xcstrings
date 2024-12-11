@@ -2,7 +2,14 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Accueil" : {
-
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accueil"
+          }
+        }
+      }
     },
     "Adresse sélectionnée :" : {
 
@@ -18,6 +25,17 @@
     },
     "Bar" : {
 
+    },
+    "Call" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appeler"
+          }
+        }
+      }
     },
     "Contribute" : {
       "extractionState" : "manual",
@@ -51,6 +69,17 @@
     "Laisser un commentaire" : {
 
     },
+    "Leave a comment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laisser un commentaire"
+          }
+        }
+      }
+    },
     "Liste" : {
 
     },
@@ -76,6 +105,17 @@
     },
     "Rechercher une addresse ou un lieu" : {
 
+    },
+    "See the website" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir le site internet"
+          }
+        }
+      }
     },
     "Suggestions d'adresses" : {
 
