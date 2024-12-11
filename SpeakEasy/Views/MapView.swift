@@ -22,34 +22,46 @@ struct MapView: View {
     
     var body: some View {
         NavigationStack {
-            Map(position: $position) {
-                ForEach(listLocations) { location in
-                    Annotation(location.name, coordinate: location.coordinates()) {
-                        NavigationLink {
-                            DetailView(location: location)
-                        } label: {
-                            VStack {
-                                Image(systemName: location.type.icon)
-                                    .foregroundStyle(.white)
-                                    .padding(8)
-                                    .background(Color("Primary"))
-                                    .clipShape(Circle())
-                                    .shadow(radius: 4)
-                                
-                                Text(location.name)
-                                    .font(.caption)
-                                    .foregroundColor(.black)
-                                    .padding(4)
-                                    .background(Color.white.opacity(0.9))
-                                    .cornerRadius(8)
+            ZStack(alignment: .topTrailing) {
+                Map(position: $position) {
+                    ForEach(listLocations) { location in
+                        Annotation(location.name, coordinate: location.coordinates()) {
+                            NavigationLink {
+                                DetailView(location: location)
+                            } label: {
+                                VStack {
+                                    Image(systemName: location.type.icon)
+                                        .foregroundStyle(.white)
+                                        .padding(8)
+                                        .background(Color("Primary"))
+                                        .clipShape(Circle())
+                                        .shadow(radius: 4)
+                                    
+                                    Text(location.name)
+                                        .font(.caption)
+                                        .foregroundColor(.black)
+                                        .padding(4)
+                                        .background(Color.white.opacity(0.9))
+                                        .cornerRadius(8)
+                                }
                             }
                         }
+                        .annotationTitles(.hidden)
                     }
-                    .annotationTitles(.hidden)
                 }
-            }
-            .mapStyle(.imagery(elevation: .realistic))
-            .navigationBarHidden(true)
+                .mapStyle(.imagery(elevation: .realistic))
+                
+                NavigationLink {
+                    AddLocationView()
+                } label: {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.system(size: 24))
+                        .foregroundStyle(Color("White"))
+                }.frame(width: 48, height: 48)
+                    .background(Color("Gray"))
+                    .cornerRadius(12)
+                    .padding()
+            }.navigationBarHidden(true)
         }
     }
 }
