@@ -6,23 +6,30 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
     @State var selection: Int = 0
+    @Query var locations: [LocationModel]
+    var isPreview = false
     
     var body: some View {
         TabView {
-            MapView(listLocations: LocationModel.getLyonLocationsWithFullData()).tabItem {
+            MapView(listLocations: self.getLocations()).tabItem {
                 Label("Map", systemImage: "map.fill")
             }
             
-            ListView(locations: LocationModel.getLyonLocationsWithFullData()).tabItem {
+            ListView(locations: self.getLocations()).tabItem {
                 Label("Liste", systemImage: "sharedwithyou")
             }
         }
     }
+    
+    func getLocations() -> [LocationModel] {
+        return isPreview ? LocationModel.getLyonLocationsWithFullData() : locations
+    }
 }
 
 #Preview {
-    ContentView()
+    ContentView(isPreview: true)
 }
