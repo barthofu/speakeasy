@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct DetailView: View {
-    var location: Location
+    var location: LocationModel
     
     var body: some View {
         VStack {
@@ -65,6 +65,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(location: Location.getLyonLocationsWithFullData()[0])
+        DetailView(location: LocationModel.getLyonLocationsWithFullData()[0])
     }
 }
