@@ -8,12 +8,30 @@
 import SwiftUI
 
 struct ListView: View {
+    @State var selectedFilter: LocationType?
+    
     var locations: [LocationModel] = []
+    
+    var filteredLocations: [LocationModel] {
+        if(locations.isEmpty || selectedFilter == nil) {
+            return locations
+        }
+        
+        return locations.filter { location in
+            location.type == selectedFilter
+        }
+    }
     
     var body: some View {
         NavigationStack {
             List {
-                ForEach(locations) { location in
+                Picker(selection: $selectedFilter, label: Text("Filter")) {
+                    Text("All").tag(nil as LocationType?)
+                    ForEach(LocationType.allCases) { type in
+                        Text(type.displayName).tag(type)
+                    }
+                }
+                ForEach(filteredLocations) { location in
                     NavigationLink {
                         DetailView(location: location)
                     } label: {

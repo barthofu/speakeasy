@@ -19,7 +19,7 @@ struct DetailView: View {
                     .font(.title)
                     .fontWeight(.bold)
                 
-                Text(location.type.rawValue.capitalized)
+                Text(location.type.displayName.capitalized)
                     .font(.subheadline)
                     .opacity(0.5)
                 
