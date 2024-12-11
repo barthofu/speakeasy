@@ -16,7 +16,7 @@ struct ContentView: View {
                 Label("Map", systemImage: "map.fill")
             }
             
-            ListView().tabItem {
+            ListView(locations: LocationModel.getLyonLocationsWithFullData()).tabItem {
                 Label("Contribute", systemImage: "sharedwithyou")
             }
         }
