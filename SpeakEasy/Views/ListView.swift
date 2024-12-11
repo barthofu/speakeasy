@@ -30,6 +30,14 @@ struct ListView: View {
             })
             .animation(.default, value: locations)
             .navigationTitle("Locations")
+            .toolbar {
+                NavigationLink {
+                    AddLocationView()
+                } label: {
+                    Image(systemName: "plus")
+                }
+                .padding()
+            }
         }
     }
 }
