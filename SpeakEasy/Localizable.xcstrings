@@ -21,6 +21,9 @@
     "Ajouter un établissement" : {
 
     },
+    "Aller à la vue détail" : {
+
+    },
     "Call" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -31,6 +34,9 @@
           }
         }
       }
+    },
+    "Commentaire (optionnel)" : {
+
     },
     "Contribute" : {
       "extractionState" : "manual",
@@ -49,10 +55,10 @@
         }
       }
     },
-    "Heure de fermeture" : {
+    "Hello, Liste!" : {
 
     },
-    "Images disponibles" : {
+    "Heure de fermeture" : {
 
     },
     "Informations de l'établissement" : {

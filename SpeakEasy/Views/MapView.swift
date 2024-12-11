@@ -24,8 +24,7 @@ struct MapView: View {
         NavigationStack {
             Map(position: $position) {
                 ForEach(listLocations) { location in
-                    Annotation(location.name, coordinate: CLLocationCoordinate2D(latitude: location.coordinates.latitude, longitude: location.coordinates.longitude)) {
-                        
+                    Annotation(location.name, coordinate: location.coordinates()) {
                         NavigationLink {
                             DetailView(location: location)
                         } label: {

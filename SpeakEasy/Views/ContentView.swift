@@ -17,7 +17,7 @@ struct ContentView: View {
             }
             
             ListView(locations: LocationModel.getLyonLocationsWithFullData()).tabItem {
-                Label("Contribute", systemImage: "sharedwithyou")
+                Label("Liste", systemImage: "sharedwithyou")
             }
         }
     }

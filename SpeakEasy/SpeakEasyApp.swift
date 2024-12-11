@@ -12,6 +12,10 @@ struct SpeakEasyApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(for: [
+                    LocationModel.self,
+                    PhotoModel.self
+                ])
         }
     }
 }

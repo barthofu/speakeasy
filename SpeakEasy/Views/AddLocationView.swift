@@ -2,9 +2,9 @@ import SwiftUI
 import MapKit
 import iPhoneNumberField
 
-let COMMENT_PLACEHOLDER = "Commentaire"
-
 struct AddLocationView: View {
+    
+    @Environment(\.modelContext) var modelContext
     
     @State private var locationService = LocationService(completer: .init())
     @State private var searchQuery = ""
@@ -16,11 +16,9 @@ struct AddLocationView: View {
     @State private var phoneNumber = ""
     @State private var minPrice: Double? = nil
     @State private var maxPrice: Double? = nil
-    @State private var type = LocationType.bar.rawValue
-    @State private var comment = COMMENT_PLACEHOLDER
+    @State private var type = LocationType.bar
+    @State private var comment = ""
     @State private var imageUrl = ""
-    
-    @State private var fetchedImageUrls: [String] = []
     
     let locationManager = CLLocationManager()
 
@@ -85,14 +83,11 @@ struct AddLocationView: View {
                         TextField("Prix haut", value: $maxPrice, format: .number)
                             .keyboardType(.decimalPad)
                     }
+                }
+                
+                Section(header: Text("Commentaire (optionnel)")) {
                     
                     TextEditor(text: $comment)
-                        .foregroundColor(self.comment == COMMENT_PLACEHOLDER ? .gray : .primary)
-                        .onTapGesture {
-                            if self.comment == COMMENT_PLACEHOLDER {
-                                self.comment = ""
-                            }
-                        }
                 }
                 
                 Button("Ajouter l'établissement") {
@@ -101,17 +96,8 @@ struct AddLocationView: View {
                     .disabled(
                         name.isEmpty
                         || address.isEmpty
-                        || type.isEmpty
+                        || type.rawValue.isEmpty
                     )
-                
-                if !fetchedImageUrls.isEmpty {
-                    Section(header: Text("Images disponibles")) {
-                        ForEach(fetchedImageUrls, id: \.self) { imageUrl in
-                            Text(imageUrl)
-                                .font(.body)
-                        }
-                    }
-                }
             }
             .onChange(of: searchQuery) {
                 locationService.update(queryFragment: searchQuery)
@@ -124,14 +110,33 @@ struct AddLocationView: View {
     func saveLocation() {
         print("Nom: \(name), Adresse: \(selectedResult?.address ?? "")")
         
-        fetchImageUrls()
-    }
-    
-    func fetchImageUrls() {
-        fetchedImageUrls = [
-            "https://example.com/image1.jpg",
-            "https://example.com/image2.jpg"
-        ]
+        guard let coordinates = self.selectedResult?.coordinates else {
+            print("Erreur : Les coordonnées ne sont pas disponibles.")
+            return
+        }
+                
+        let newLocation = LocationModel(
+            coordinates: coordinates,
+            name: self.name,
+            address: self.address,
+            type: self.type,
+            minPrice: self.minPrice,
+            maxPrice: self.maxPrice,
+            phoneNumber: self.phoneNumber,
+            closingTime: self.closingTime,
+            url: self.selectedResult?.url
+        )
+        if !comment.isEmpty {
+            newLocation.comment = self.comment
+        }
+        
+        do {
+            modelContext.insert(newLocation)
+            try modelContext.save()
+            print("L'emplacement a été sauvegardé avec succès !")
+        } catch let error as NSError {
+            print("Erreur lors de la sauvegarde : \(error), \(error.userInfo)")
+        }
     }
 }
 

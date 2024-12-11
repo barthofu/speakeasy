@@ -26,7 +26,7 @@ struct DetailView: View {
                 // Carrousel d'images
                 TabView {
                     ForEach(location.photos.indices) { index in
-                        AsyncImage(url: URL(string: location.photos[index]))
+                        AsyncImage(url: URL(string: location.photos[index].url))
                             .frame(height: 200)
                             .scaledToFill()
                             .clipped()
@@ -38,7 +38,6 @@ struct DetailView: View {
                 .cornerRadius(10)
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
                 .padding(.vertical, 15)
-                
                 
                 HStack(spacing: 20) {
                     GlassedButton(

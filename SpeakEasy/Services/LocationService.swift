@@ -14,6 +14,7 @@ struct SearchResult: Identifiable {
     let address: String
     let type: String?
     let phoneNumber: String?
+    let url: String?
 }
 
 @Observable
@@ -42,7 +43,8 @@ class LocationService: NSObject, MKLocalSearchCompleterDelegate {
                 name: completion.title,
                 address: completion.subtitle,
                 type: mapItem?.pointOfInterestCategory?.rawValue.replacingOccurrences(of: "MKPOICategory", with: "").lowercased(),
-                phoneNumber: mapItem?.phoneNumber
+                phoneNumber: mapItem?.phoneNumber,
+                url: mapItem?.url?.absoluteString
             )
         }
     }
