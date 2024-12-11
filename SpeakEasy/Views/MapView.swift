@@ -11,6 +11,7 @@ import MapKit
 struct MapView: View {
     
     @State private var locationService = LocationService(completer: .init())
+    @State private var addLocationModalPresented = false
     @StateObject var manager = LocationManager()
     
     var listLocations: [LocationModel]
@@ -46,16 +47,18 @@ struct MapView: View {
                 .edgesIgnoringSafeArea(.top)
                 .mapStyle(.imagery(elevation: .realistic))
                 
-                NavigationLink {
-                    AddLocationView()
+                Button {
+                    addLocationModalPresented.toggle()
                 } label: {
                     Image(systemName: "plus.circle.fill")
                         .font(.system(size: 24))
                         .foregroundStyle(Color("White"))
-                }.frame(width: 48, height: 48)
-                    .background(Color("Gray"))
-                    .cornerRadius(12)
-                    .padding()
+                }
+                .frame(width: 48, height: 48)
+                .background(Color("Gray"))
+                .cornerRadius(12)
+                .padding()
+                .fullScreenCover(isPresented: $addLocationModalPresented, content: AddLocationModalView.init)
             }
         }
     }

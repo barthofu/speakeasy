@@ -1,10 +1,12 @@
 import SwiftUI
 import MapKit
 import iPhoneNumberField
+import SimpleToast
 
-struct AddLocationView: View {
+struct AddLocationModalView: View {
     
     @Environment(\.modelContext) var modelContext
+    @Environment(\.dismiss) var dismiss
     
     @State private var locationService = LocationService(completer: .init())
     @State private var searchQuery = ""
@@ -103,6 +105,15 @@ struct AddLocationView: View {
                 locationService.update(queryFragment: searchQuery)
             }
             .navigationBarTitle("Ajouter un établissement")
+            .toolbar {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                }
+                .padding()
+            }
+            
         }
         .navigationViewStyle(.stack)
     }
@@ -126,6 +137,10 @@ struct AddLocationView: View {
             closingTime: self.closingTime,
             url: self.selectedResult?.url
         )
+        newLocation.photos = [
+            PhotoModel(url: "https://picsum.photos/seed/\(self.name.replacingOccurrences(of: " ", with: ""))/1280/720"),
+            PhotoModel(url: "https://picsum.photos/seed/\(self.address.replacingOccurrences(of: " ", with: ""))/1280/720")
+        ]
         if !comment.isEmpty {
             newLocation.comment = self.comment
         }
@@ -134,6 +149,7 @@ struct AddLocationView: View {
             modelContext.insert(newLocation)
             try modelContext.save()
             print("L'emplacement a été sauvegardé avec succès !")
+            dismiss()
         } catch let error as NSError {
             print("Erreur lors de la sauvegarde : \(error), \(error.userInfo)")
         }
@@ -142,5 +158,5 @@ struct AddLocationView: View {
 
 
 #Preview {
-    AddLocationView()
+    AddLocationModalView()
 }

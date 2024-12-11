@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import SimpleToast
 
 struct ListView: View {
     @State var selectedFilter: LocationType?
+    @State private var isPresented = false
+    @State private var addLocationModalPresented = false
     
     var locations: [LocationModel] = []
     
@@ -49,12 +52,13 @@ struct ListView: View {
             .animation(.default, value: locations)
             .navigationTitle("Locations")
             .toolbar {
-                NavigationLink {
-                    AddLocationView()
+                Button {
+                    addLocationModalPresented.toggle()
                 } label: {
                     Image(systemName: "plus")
                 }
                 .padding()
+                .fullScreenCover(isPresented: $addLocationModalPresented, content: AddLocationModalView.init)
             }
         }
     }
