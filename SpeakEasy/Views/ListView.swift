@@ -39,7 +39,7 @@ struct ListView: View {
                     }
                 }
             }.overlay(Group {
-                if locations.isEmpty {
+                if filteredLocations.isEmpty {
                     Text("No locations")
                         .font(.headline)
                         .multilineTextAlignment(.center)
