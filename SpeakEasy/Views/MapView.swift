@@ -39,6 +39,7 @@ struct MapView: View {
                                 .background(Color.white.opacity(0.9))
                                 .cornerRadius(8)
                     }
+                    .annotationTitles(.hidden)
                 }
             }
         }
