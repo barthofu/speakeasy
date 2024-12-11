@@ -5,7 +5,7 @@ struct DetailView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 15) {
+            VStack {
                 Image(systemName: location.type.icon)
                     .resizable()
                     .scaledToFit()
@@ -18,10 +18,14 @@ struct DetailView: View {
                 Text(location.name)
                     .font(.title)
                     .fontWeight(.bold)
+                    .padding(.top)
                 
                 Text(LocalizedStringKey(location.type.displayName))
                     .font(.subheadline)
                     .opacity(0.5)
+                
+                Text(location.address)
+                    .font(.subheadline)
                 
                 // Carrousel d'images
                 TabView {
@@ -40,6 +44,52 @@ struct DetailView: View {
                 .padding(.vertical, 15)
                 
                 HStack(spacing: 20) {
+                    VStack(spacing: 10) {
+                        HStack(spacing: 10) {
+                            Image(systemName: "clock")
+                                .font(.system(size: 30))
+                                .foregroundColor(Color("Gray").opacity(0.8))
+                            Text("Closing")
+                                .font(.headline)
+                                .foregroundColor(Color.secondary)
+                        }
+                        
+                        if(location.closingTime != nil && !location.closingTime!.isEmpty) {
+                            Text(location.closingTime!)
+                        } else {
+                            Text(LocalizedStringKey("No info"))
+                                .multilineTextAlignment(.center)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, minHeight: 90)
+                    .padding()
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(12)
+                    
+                    VStack(spacing: 10) {
+                        HStack(spacing: 10) {
+                            Image(systemName: "eurosign.circle")
+                                .font(.system(size: 30))
+                                .foregroundColor(Color("Gray").opacity(0.8))
+                            Text("Price")
+                                .font(.headline)
+                                .foregroundColor(Color.secondary)
+                        }
+                        
+                        if(location.minPrice != nil && location.maxPrice != nil) {
+                            Text(String(format : "%d€ - %d€", location.minPrice!, location.maxPrice!))
+                        } else {
+                            Text(LocalizedStringKey("No info"))
+                                .multilineTextAlignment(.center)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, minHeight: 90)
+                    .padding()
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(12)
+                }.padding(.bottom, 10)
+                
+                HStack(spacing: 20) {
                     GlassedButton(
                         systemImageName: "phone.fill",
                         text: "Call",
@@ -54,13 +104,20 @@ struct DetailView: View {
                         systemImageName: "globe",
                         text: "See the website",
                         action: {
+                            if(location.url == nil || location.url!.isEmpty) {
+                                return;
+                            }
                             UIApplication.shared.open(
-                                URL(string: "https://www.google.fr")!
+                                URL(string: location.url!)!
                             )
                         }
                     )
                 }
-            
+                
+                if(location.comment != nil && !location.comment!.isEmpty) {
+                    Text(location.comment!)
+                        .padding()
+                }
             }.padding()
         }
     }

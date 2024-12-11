@@ -60,6 +60,16 @@
         }
       }
     },
+    "Closing" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fermeture"
+          }
+        }
+      }
+    },
     "Club" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -166,6 +176,23 @@
         }
       }
     },
+    "No info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Information unavailable"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Information indisponible"
+          }
+        }
+      }
+    },
     "No locations" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -185,6 +212,16 @@
     },
     "Nom" : {
 
+    },
+    "Price" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prix"
+          }
+        }
+      }
     },
     "Prix bas" : {
 
@@ -259,7 +296,7 @@
           }
         }
       }
-      }
+    }
   },
   "version" : "1.0"
 }
