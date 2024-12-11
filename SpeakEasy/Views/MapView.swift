@@ -21,24 +21,29 @@ struct MapView: View {
                 Map(coordinateRegion: $manager.region, showsUserLocation: true, annotationItems: listLocations, annotationContent:
                         {
                     location in
-                        
+                    
                     MapAnnotation(coordinate: location.coordinates()) {
+                        NavigationLink(destination: DetailView(location: location)) {
+                            VStack {
                                 Image(systemName: location.type.icon)
-                                        .foregroundStyle(.white)
-                                        .padding(8)
-                                        .background(Color("Primary"))
-                                        .clipShape(Circle())
-                                        .shadow(radius: 4)
-                                    
-                                    Text(location.name)
-                                        .font(.caption)
-                                        .foregroundColor(.black)
-                                        .padding(4)
-                                        .background(Color.white.opacity(0.9))
-                                        .cornerRadius(8)
+                                    .foregroundStyle(.white)
+                                    .padding(8)
+                                    .background(Color("Primary"))
+                                    .clipShape(Circle())
+                                    .shadow(radius: 4)
+                                
+                                Text(location.name)
+                                    .font(.caption)
+                                    .foregroundColor(.black)
+                                    .padding(4)
+                                    .background(Color.white.opacity(0.9))
+                                    .cornerRadius(8)
                             }
-                            
+                        }
+                    }
+                    
                 })
+                .edgesIgnoringSafeArea(.top)
                 .mapStyle(.imagery(elevation: .realistic))
                 
                 NavigationLink {
@@ -51,7 +56,7 @@ struct MapView: View {
                     .background(Color("Gray"))
                     .cornerRadius(12)
                     .padding()
-            }.navigationBarHidden(true)
+            }
         }
     }
 }
