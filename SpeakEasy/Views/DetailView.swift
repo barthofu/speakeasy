@@ -19,7 +19,7 @@ struct DetailView: View {
                     .font(.title)
                     .fontWeight(.bold)
                 
-                Text(location.type.displayName.capitalized)
+                Text(LocalizedStringKey(location.type.displayName))
                     .font(.subheadline)
                     .opacity(0.5)
                 

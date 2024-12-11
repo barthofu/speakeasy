@@ -24,7 +24,7 @@ struct LocationListItem: View {
             VStack(alignment: .leading) {
                 Text(location.name)
                     .bold()
-                Text(location.type.displayName)
+                Text(LocalizedStringKey(location.type.displayName))
                     .font(.caption)
                     .foregroundColor(.gray)
             }

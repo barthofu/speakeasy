@@ -72,7 +72,7 @@ struct AddLocationView: View {
                     
                     Picker("Type", selection: $type) {
                         ForEach(LocationType.allCases) { locationType in
-                            Text(locationType.displayName).tag(locationType)
+                            Text(LocalizedStringKey(locationType.displayName)).tag(locationType)
                         }
                     }
                     .pickerStyle(.menu)

@@ -38,6 +38,17 @@
         }
       }
     },
+    "Bar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bar"
+          }
+        }
+      }
+    },
     "Call" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -45,6 +56,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Appeler"
+          }
+        }
+      }
+    },
+    "Club" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Club"
           }
         }
       }
@@ -118,7 +140,14 @@
       }
     },
     "Map" : {
-
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carte"
+          }
+        }
+      }
     },
     "Nearby" : {
       "extractionState" : "manual",
@@ -166,6 +195,17 @@
     "Rechercher une addresse ou un lieu" : {
 
     },
+    "Restaurant" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurant"
+          }
+        }
+      }
+    },
     "See the website" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -177,8 +217,48 @@
         }
       }
     },
+    "Shop" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magasin"
+          }
+        }
+      }
+    },
+    "Supermarket" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supermarché"
+          }
+        }
+      }
+    },
+    "Tobacconist" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabac"
+          }
+        }
+      }
+    },
     "Type" : {
-
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

@@ -28,7 +28,7 @@ struct ListView: View {
                 Picker(selection: $selectedFilter, label: Text("Filter")) {
                     Text("All").tag(nil as LocationType?)
                     ForEach(LocationType.allCases) { type in
-                        Text(type.displayName).tag(type)
+                        Text(LocalizedStringKey(type.displayName)).tag(type)
                     }
                 }
                 ForEach(filteredLocations) { location in
