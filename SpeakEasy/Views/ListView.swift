@@ -9,6 +9,8 @@ import SwiftUI
 import SimpleToast
 
 struct ListView: View {
+    @Environment(\.modelContext) var modelContext
+    
     @State var selectedFilter: LocationType?
     @State private var isPresented = false
     @State private var addLocationModalPresented = false
@@ -39,6 +41,13 @@ struct ListView: View {
                         DetailView(location: location)
                     } label: {
                         LocationListItem(location: location)
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                Button(role: .destructive) {
+                                    modelContext.delete(location)
+                                } label: {
+                                    Label("delete", systemImage: "trash.fill")
+                                }
+                            }
                     }
                 }
             }.overlay(Group {
