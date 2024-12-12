@@ -1,7 +1,6 @@
 import SwiftUI
 import MapKit
 import iPhoneNumberField
-import SimpleToast
 
 struct AddLocationModalView: View {
     
