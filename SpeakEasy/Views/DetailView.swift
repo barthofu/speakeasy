@@ -77,7 +77,7 @@ struct DetailView: View {
                         }
                         
                         if(location.minPrice != nil && location.maxPrice != nil) {
-                            Text(String(format : "%d€ - %d€", location.minPrice!, location.maxPrice!))
+                            Text(String(format : "%.2f€ - %.2f€", locale: Locale.current, location.minPrice!, location.maxPrice!))
                         } else {
                             Text(LocalizedStringKey("No info"))
                                 .multilineTextAlignment(.center)
@@ -104,11 +104,8 @@ struct DetailView: View {
                         systemImageName: "globe",
                         text: "See the website",
                         action: {
-                            if(location.url == nil || location.url!.isEmpty) {
-                                return;
-                            }
                             UIApplication.shared.open(
-                                URL(string: location.url!)!
+                                URL(string: location.url ?? "https://www.google.com/search?q=\(location.name)")!
                             )
                         }
                     )
