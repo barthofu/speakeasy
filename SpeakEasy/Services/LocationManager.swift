@@ -13,7 +13,7 @@ final class LocationManager: NSObject, ObservableObject {
     private let locationManager = CLLocationManager()
     
     @Published var region = MKCoordinateRegion(
-        center: .init(latitude: 37.334_900, longitude: -122.009_020),
+        center: .init(latitude: 45.7393359, longitude: 4.8263319),
         span: .init(latitudeDelta: 0.2, longitudeDelta: 0.2)
     )
     
