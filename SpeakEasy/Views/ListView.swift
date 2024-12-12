@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SimpleToast
 
 struct ListView: View {
     @Environment(\.modelContext) var modelContext

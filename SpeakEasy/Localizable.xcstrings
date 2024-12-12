@@ -101,6 +101,9 @@
         }
       }
     },
+    "delete" : {
+
+    },
     "Filter" : {
       "extractionState" : "manual",
       "localizations" : {
