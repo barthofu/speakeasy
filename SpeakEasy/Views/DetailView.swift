@@ -105,7 +105,7 @@ struct DetailView: View {
                         text: "See the website",
                         action: {
                             UIApplication.shared.open(
-                                URL(string: location.url ?? "https://www.google.com/search?q=\(location.name)")!
+                                URL(string: location.url ?? "https://www.google.com/search?q=\(location.name)+ \(location.address)")!
                             )
                         }
                     )
